@@ -1,3 +1,8 @@
+# Demo using AWS Amplify
+
+[Demo](https://master.dkz8fr7ryjldg.amplifyapp.com).
+
+
 # Alfi Technical Test
 
 There are 3 questions contained in this repo. Please work through them at your own pace, and complete them however you wish.
