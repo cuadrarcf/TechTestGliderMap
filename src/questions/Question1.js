@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from "antd";
 
 /**
  * Situation: The TestForm component was written by a junior developer who needs some help getting it to function.
@@ -17,12 +18,14 @@ export default function Question1(props) {
 
   const [state, setState] = useState(defaultState);
   const [errormessage, setErrormessage] = useState('');
+  const [response, setResponse] = useState(null);
 
   useEffect(() => {
     if (!state.title) {
       setErrormessage("You need to enter a title! 😊");
     } else {
       setErrormessage('');
+      setResponse(null);
     }
   }, [state.title]);
 
@@ -37,7 +40,10 @@ export default function Question1(props) {
       body: JSON.stringify({title, body, userId}),
     })
       .then(response => response.json())
-      .then(json => console.log(json))
+      .then(json => {
+        setResponse(json);
+        setState(defaultState);
+      })
   }
 
   const onChangeValue = (event, prop) => {
@@ -84,7 +90,10 @@ export default function Question1(props) {
         {errormessage}
       </div>
 
-      <button disabled={!!errormessage} onClick={handleSubmit} style={{margin: 10}}>Submit</button>
+      <Button disabled={!!errormessage} onClick={handleSubmit} style={{margin: 10}}>Submit</Button>
+
+      <div>{response && JSON.stringify(response)}</div>
+
     </div>
 
   )
